@@ -6,10 +6,7 @@ import (
 )
 
 func main() {
-    f, err := os.OpenFile("output", os.O_WRONLY|os.O_APPEND, 0666)
-    if err != nil && os.IsNotExist(err) {
-        f, _ = os.Create("output")
-    }
+    f, _ := os.OpenFile("output", os.O_WRONLY|os.O_APPEND|os.O_CREATE, 0666)
     defer f.Close()
     io.WriteString(f, "hello world\n")
 }
